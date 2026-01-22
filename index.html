@@ -48,8 +48,11 @@
         <h1 id="titletext">ISLAND SURVIVOR</h1>
         <nav id="menuoptions">
             <button class="menuoption selected" id="startbtn">START</button>
+            <button class="menuoption" id="multiplayerbtn">MULTIPLAYER</button>
             <button class="menuoption" id="continuebtn">CONTINUE</button>
+            <button class="menuoption hubbtn" id="hubbtn">GAME HUB</button>
         </nav>
+        <div class="controls-hint">D-pad / Arrows to navigate • A / Enter to select • B / Esc = Hub</div>
     </div>
     <style>
         #gameover {
@@ -136,6 +139,21 @@
         }
         #titlescreen .menuoption:active {
             color: #0ff;
+        }
+        #titlescreen .menuoption.hubbtn {
+            color: #4fc3f7;
+            text-shadow: 0 0 8px #4fc3f7;
+        }
+        #titlescreen .menuoption.hubbtn.selected {
+            color: #4fc3f7;
+            text-shadow: 0 0 16px #fff, 0 0 32px #4fc3f7;
+        }
+        #titlescreen .controls-hint {
+            position: absolute;
+            bottom: 20px;
+            font-size: clamp(12px, 2vw, 16px);
+            color: rgba(255,255,255,0.4);
+            font-family: sans-serif;
         }
     </style>
     <script type="module" src="/script.js"></script>
