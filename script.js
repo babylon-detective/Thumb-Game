@@ -906,20 +906,26 @@ const config = {
 const game = new Phaser.Game(config);
 
 // Initialize Hub Controls for mobile (from dreamdealer.dev)
-if (typeof HubControls !== 'undefined') {
-    HubControls.init({
-        onStart: () => {
-            // Trigger pause in active scene
-            if (game.scene.isActive('MainScene')) {
-                const scene = game.scene.getScene('MainScene');
-                if (scene && scene.toggleGamePause) {
-                    scene.toggleGamePause();
+function initHubControls() {
+    if (typeof HubControls !== 'undefined') {
+        HubControls.init({
+            onStart: () => {
+                // Trigger pause in active scene
+                if (game.scene.isActive('MainScene')) {
+                    const scene = game.scene.getScene('MainScene');
+                    if (scene && scene.toggleGamePause) {
+                        scene.toggleGamePause();
+                    }
                 }
-            }
-        },
-        hideExisting: true
-    });
+            },
+            hideExisting: true
+        });
+    } else {
+        // Script may still be loading, try again
+        setTimeout(initHubControls, 100);
+    }
 }
+initHubControls();
 
 window.addEventListener('resize', () => {
     game.scale.resize(window.innerWidth, window.innerHeight);
